@@ -22,6 +22,6 @@ class LogUserRegistration
      */
     public function handle(UserRegistered $event): void
     {
-        Log::info("User registered: {$event->user->email}");
+        // Log::info("User registered: {$event->user->email}");
     }
 }

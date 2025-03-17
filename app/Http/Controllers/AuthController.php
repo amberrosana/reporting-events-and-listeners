@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\UserRegistered;
-use Illuminate\Http\Request;
 use App\Models\User;
+use App\Events\UserLoggedIn;
+use Illuminate\Http\Request;
+use App\Events\UserRegistered;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Event;
+use App\Events\UserLoggedOut;
 
 class AuthController extends Controller
 {
@@ -43,9 +46,14 @@ class AuthController extends Controller
 
     public function logout()
     {
+        $user = Auth::user();     // Store user before logging out
+
         Auth::logout();
 
-        return redirect()->route('showRegisterForm');
+        // event('user.loggedout', ['email' => $user->email]);    // Dispatch the event with the user's email
+        UserLoggedOut::dispatch($user);
+        
+        return redirect()->route('showLoginForm');
     }
 
     public function showLoginForm()
@@ -66,6 +74,8 @@ class AuthController extends Controller
         {
 
             Auth::login($user);
+
+            UserLoggedIn::dispatch($user);
 
             return redirect()->intended(route('showDashboard'));
         }
