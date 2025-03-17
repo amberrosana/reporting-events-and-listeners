@@ -6,40 +6,47 @@
     <title>REGISTER</title>
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
-            background: linear-gradient(to bottom, #6e7a8a, #3e4a61, #222831);
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to bottom, #a8e6ff, #4db8ff, #0077b6);
+            color: #024873;
             margin: 0;
             padding: 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
             height: 100vh;
-            color: #f0f0f0;
         }
 
         header {
-            background-color: #222831;
+            background: rgba(0, 119, 182, 0.9);
             color: white;
-            padding: 15px 20px;
+            padding: 20px;
             text-align: center;
             font-size: 24px;
-            border-radius: 8px;
+            border-radius: 12px;
             width: 100%;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
         }
 
         form {
-            background-color: #1e2a38;
-            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
             padding: 30px;
             width: 100%;
-            max-width: 400px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-            margin: auto;
+            max-width: 300px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            margin-top: 20px;
+            text-align: center;
         }
 
         div {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             text-align: left;
         }
 
@@ -47,7 +54,8 @@
             display: block;
             font-size: 14px;
             margin-bottom: 5px;
-            color: #d1d1d1;
+            color: #024873;
+            font-weight: bold;
         }
 
         input[type="text"],
@@ -55,44 +63,49 @@
         input[type="password"] {
             width: 100%;
             padding: 10px;
-            border: 2px solid #444;
-            border-radius: 5px;
-            background-color: #2c3e50;
-            color: #ecf0f1;
+            border: 2px solid #4db8ff;
+            border-radius: 8px;
+            background-color: #e3f7ff;
+            color: #024873;
             font-size: 16px;
+            transition: border-color 0.3s;
         }
 
         input[type="text"]:focus,
         input[type="email"]:focus,
         input[type="password"]:focus {
             outline: none;
-            border-color: #3498db;
+            border-color: #0077b6;
+            box-shadow: 0 0 5px rgba(0, 119, 182, 0.5);
         }
 
         button {
             width: 100%;
-            padding: 10px;
-            background-color: #3498db;
+            padding: 12px;
+            background: #0077b6;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             color: white;
             font-size: 16px;
             cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
         }
 
         button:hover {
-            background-color: #2980b9;
+            background: #005b8e;
+            transform: scale(1.05);
         }
 
         p {
             text-align: center;
             margin-top: 20px;
-            color: #d1d1d1;
+            color:rgb(185, 228, 255);
         }
 
         a {
-            color: #3498db;
+            color:rgb(177, 228, 255);
             text-decoration: none;
+            font-weight: bold;
         }
 
         a:hover {
@@ -112,59 +125,59 @@
 
         @media (max-width: 600px) {
             header {
-                font-size: 20px;
-                padding: 10px 15px;
+                    font-size: 20px;
+                    padding: 15px;
             }
 
             form {
-                padding: 20px;
-                width: 90%;
-                max-width: 350px;
+                    padding: 20px;
+                    width: 90%;
+                    max-width: 350px;
             }
 
             input[type="text"],
             input[type="email"],
             input[type="password"] {
-                padding: 8px;
-                font-size: 14px;
+                    padding: 8px;
+                    font-size: 14px;
             }
 
             button {
-                font-size: 14px;
-                padding: 8px;
+                    font-size: 14px;
+                    padding: 10px;
             }
 
             p {
-                font-size: 14px;
+                    font-size: 14px;
             }
         }
 
         @media (max-width: 400px) {
             header {
-                font-size: 18px;
-                padding: 8px 10px;
+                    font-size: 18px;
+                    padding: 10px;
             }
 
             form {
-                padding: 15px;
-                width: 95%;
-                max-width: 300px;
+                    padding: 15px;
+                    width: 95%;
+                    max-width: 300px;
             }
 
             input[type="text"],
             input[type="email"],
             input[type="password"] {
-                padding: 6px;
-                font-size: 12px;
+                    padding: 6px;
+                    font-size: 12px;
             }
 
             button {
-                font-size: 12px;
-                padding: 6px;
+                    font-size: 12px;
+                    padding: 8px;
             }
 
             p {
-                font-size: 12px;
+                    font-size: 12px;
             }
         }
     </style>
@@ -202,10 +215,10 @@
         <div>
             <button type="submit">Register</button>
         </div>
+    </form>
         <p>
-            Already have an account?
+            Already have an account?<br>
             <a href="{{ route('showLoginForm') }}">Login here</a>
         </p>
-    </form>
 </body>
 </html>

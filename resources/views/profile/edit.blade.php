@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOG IN</title>
+    <title>EDIT PROFILE</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,7 +18,7 @@
             height: 100vh;
         }
 
-        h1 {
+        header {
             background: rgba(0, 119, 182, 0.9);
             color: white;
             padding: 20px;
@@ -47,6 +47,7 @@
 
         div {
             margin-bottom: 15px;
+            width: 100%; /* Ensures full width for proper alignment */
             text-align: left;
         }
 
@@ -58,10 +59,8 @@
             font-weight: bold;
         }
 
-        input[type="text"],
-        input[type="email"],
-        input[type="password"] {
-            width: 100%;
+        input {
+            width: calc(100% - 20px); /* Ensures proper spacing */
             padding: 10px;
             border: 2px solid #4db8ff;
             border-radius: 8px;
@@ -69,11 +68,11 @@
             color: #024873;
             font-size: 16px;
             transition: border-color 0.3s;
+            display: block;
+            margin: 0 auto;
         }
 
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="password"]:focus {
+        input:focus {
             outline: none;
             border-color: #0077b6;
             box-shadow: 0 0 5px rgba(0, 119, 182, 0.5);
@@ -96,24 +95,8 @@
             transform: scale(1.05);
         }
 
-        p {
-            text-align: center;
-            margin-top: 20px;
-            color:rgb(193, 231, 255);
-        }
-
-        a {
-            color:rgb(147, 217, 255);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
         @media (max-width: 600px) {
-            h1 {
+            header {
                 font-size: 20px;
                 padding: 15px;
             }
@@ -124,76 +107,41 @@
                 max-width: 350px;
             }
 
-            input[type="text"],
-            input[type="email"],
-            input[type="password"] {
-                padding: 8px;
+            input {
                 font-size: 14px;
             }
 
             button {
                 font-size: 14px;
                 padding: 10px;
-            }
-
-            p {
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 400px) {
-            h1 {
-                font-size: 18px;
-                padding: 10px;
-            }
-
-            form {
-                padding: 15px;
-                width: 95%;
-                max-width: 300px;
-            }
-
-            input[type="text"],
-            input[type="email"],
-            input[type="password"] {
-                padding: 6px;
-                font-size: 12px;
-            }
-
-            button {
-                font-size: 12px;
-                padding: 8px;
-            }
-
-            p {
-                font-size: 12px;
             }
         }
     </style>
 </head>
 <body>
-    <h1>LOG IN</h1>
+    <header>
+        Edit your Profile
+    </header>
 
-    <form action="{{ route('login') }}" method="POST">
-        @method('POST')
+    <form action="{{ route('profile.update', $profile->id) }}" method="POST">
+        @method('PUT')
         @csrf
-
         <div>
-            <label for="email">Email: </label>
-            <input type="email" name="email" id="email" required value="{{ old('email') }}" placeholder="Your email goes here.">
+            <label for="address">Address</label>
+            <input type="text" name="address" id="address" required value="{{ old('address', $profile->address) }}" placeholder="Your address goes here.">
         </div>
-
         <div>
-            <label for="password">Password: </label>
-            <input type="password" name="password" id="password" required value="{{ old('password') }}" placeholder="Your password goes here.">
+            <label for="number">Number</label>
+            <input type="tel" name="number" id="number" value="{{ old('number', $profile->number) }}" placeholder="Your contact number goes here.">
         </div>
-
         <div>
-            <button type="submit">Log In</button>
+            <label for="bio">Bio</label>
+            <input type="text" name="bio" id="bio" value="{{ old('bio', $profile->bio) }}" required placeholder="Your bio goes here.">
+        </div>
+        <div>
+            <button type="submit">Update Profile</button>
         </div>
     </form>
 
-    <p>Don't have an account?</p>
-    <a href="{{ route('showRegisterForm') }}">Register Here</a>
 </body>
 </html>

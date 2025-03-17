@@ -38,7 +38,7 @@ class AuthController extends Controller
 
     public function showDashboard() 
     {
-        return view('auth.dashboard');
+        return view('auth.dashboard', ['profile' => Auth::user()->profile]);
     }
 
     public function logout()

@@ -19,4 +19,10 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [AuthController::class, 'showDashboard'])->name('showDashboard');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::get('/profile/create', [ProfileController::class, 'showProfileForm'])->name('profile.create');
+    Route::post('/profile', [ProfileController::class, 'store'])->name('profile.store');
+
+    Route::get('/profile/edit-profile/{profile}', [ProfileController::class, 'editProfile'])->name('profile.edit');
+    Route::put('/profile/update-profile/{profile}', [ProfileController::class, 'update'])->name('profile.update');
 });
